@@ -1,0 +1,45 @@
+🧩 FORMULÁRIO DE VALIDAÇÃO — ESQUEMA DO BANCO DE DADOS SIAE
+
+📋 IDENTIFICAÇÃO
+1. Nome — [resposta curta]
+2. Função no time — [múltipla escolha]
+   - Backend
+   - Frontend
+   - Banco de Dados
+   - Outro: _______
+
+🔍 COMPREENSÃO GERAL
+3. Você conseguiu compreender a estrutura geral do banco e o papel de cada tabela? — [múltipla escolha]
+   - Sim
+   - Parcialmente
+   - Não
+4. Caso tenha ficado alguma dúvida, descreva qual. — [parágrafo]
+
+🧱 AVALIAÇÃO DAS ENTIDADES
+6. As tabelas estão nomeadas de forma clara e coerente com suas funções? — [parágrafo]
+7. Há alguma tabela que você acredita poder ser unificada, dividida ou renomeada? — [parágrafo]
+8. As colunas (atributos) estão adequadas ao propósito de cada entidade? — [parágrafo]
+9. Há necessidade de novas colunas em alguma tabela? — [parágrafo]
+
+🔗 RELACIONAMENTOS
+10. Os relacionamentos entre as entidades estão coerentes com o fluxo do sistema? — [parágrafo]
+11. A tabela AlunoAuxilio (relação N:N entre Aluno e Auxílio) está clara para você? — [múltipla escolha]
+    - Sim
+    - Parcialmente
+    - Não
+12. Caso tenha sugestões ou dúvidas sobre essa estrutura, descreva. — [parágrafo]
+13. Há algum relacionamento que poderia ser ajustado, removido ou adicionado? — [parágrafo]
+
+⚙️ CONSISTÊNCIA E REGRAS DE NEGÓCIO
+14. O esquema atende às regras de negócio conhecidas até o momento? — [parágrafo]
+15. Há alguma validação ou restrição que deveria estar explícita (unique, nullable, enum etc.)? — [parágrafo]
+16. Como você avalia o nível de normalização do modelo (1 a 5)? — [escala linear de 1 a 5]
+    - 1: Pouco normalizado
+    - 5: Totalmente normalizado
+
+🚀 ESCALABILIDADE E SUGESTÕES FINAIS
+17. O modelo parece escalável para futuras expansões (novos auxílios, novos tipos de usuários, histórico de alterações)? — [parágrafo]
+18. Há algo que possa impactar negativamente o desempenho (joins complexos, dependências desnecessárias)? — [parágrafo]
+19. Alguma recomendação para melhorar a integração com o backend (Prisma, tipos de dados, nomes etc.)? — [parágrafo]
+20. Sugestões gerais de melhoria ou pontos de atenção. — [parágrafo]
+21. Há algo que gostaria de discutir em grupo sobre o modelo? — [parágrafo]
