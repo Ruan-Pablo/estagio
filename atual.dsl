@@ -175,10 +175,11 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             documento_controller -> documento_service "Gerencia upload e consulta de documentos" "sync" "relation"
             documento_service -> documento_repository "Armazena/recupera documentos" "sync" "relation"
             
-            notification_service -> sistema_smtp "Envia notificações via Gmail" "async" "relation"
+            notification_service -> sistema_smtp "Envia notificações via Gmail" "async" 
+            sigaa_service -> sistema_api_matricula "Solicita validação de matricula" "sync" 
             jwt_middleware -> auth_service "Valida token JWT nas rotas protegidas" "sync" "relation"
             
-            auth_repository -> banco_dados "Armazena dados de autenticação" "relation"
+            auth_repository -> banco_dados "Armazena dados de autenticação" "sync" "relation"
             solicitacao_repository -> banco_dados "Armazena dados de solicitações" "sync" "relation"
             documento_repository -> banco_dados "Armazena documentos" "sync" "relation"
 
@@ -189,6 +190,7 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
      * VIEWS - Diagramas
      ************************/
     views {
+        
         systemContext sistema_siae "C1_Context" {
             include *
             autolayout lr
@@ -224,6 +226,7 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             }
             element "Component" {
                 shape component
+                width 550
             }
             element "JWT" {
                 color "#9673a6"
@@ -275,7 +278,7 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             relationship "async" {
                 color "#555555"
                 thickness 2
-                dashed false
+                dashed true
                 fontSize 20
             }
         }
