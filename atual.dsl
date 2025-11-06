@@ -139,51 +139,52 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             /***********************
              * RELACIONAMENTOS DO SISTEMA
              ***********************/
-            pessoa_aluno -> sistema_siae "Acessa para solicitar auxílios" "sync" "relation"
-            pessoa_assistente -> sistema_siae "Acessa para avaliar solicitações" "sync" "relation"
+            pessoa_aluno -> sistema_siae "Acessa para solicitar auxílios" "sync" 
+            pessoa_assistente -> sistema_siae "Acessa para avaliar solicitações" "sync" 
 
-            sistema_siae -> sistema_api_matricula "Valida matrícula do aluno" "sync" "relation"
-            sistema_siae -> sistema_smtp "Envia solicitação de envio de notificação" "sync" "relation"
-            sistema_smtp -> pessoa_aluno "Notifica status da solicitação" "sync" "relation"
-            sistema_smtp -> pessoa_assistente "Notifica chegada de solicitação" "sync" "relation"
+            sistema_siae -> sistema_api_matricula "Valida matrícula do aluno" "sync" 
+            sistema_siae -> sistema_smtp "Envia solicitação de envio de notificação" "sync" 
+            sistema_smtp -> pessoa_aluno "Notifica status da solicitação" "sync" 
+            sistema_smtp -> pessoa_assistente "Notifica chegada de solicitação" "sync" 
 
             /************************************
              * RELACIONAMENTOS ENTRE CONTAINERS *
              ************************************/
-            pessoa_aluno -> login_page "Acessa a tela de login/cadastro" "sync" "relation"
-            pessoa_aluno -> aluno_pages "Acessa páginas do aluno" "sync" "relation"
+            pessoa_aluno -> login_page "Acessa a tela de login/cadastro" "sync" 
+            pessoa_aluno -> aluno_pages "Acessa páginas do aluno" "sync" 
  
-            pessoa_assistente -> login_page "Acessa a tela de login" "sync" "relation"
-            pessoa_assistente -> assistente_page "Acessa páginas do assistente" "sync" "relation"
+            pessoa_assistente -> login_page "Acessa a tela de login" "sync" 
+            pessoa_assistente -> assistente_page "Acessa páginas do assistente" "sync" 
 
-            login_page -> auth_controller "POST /login (realiza login)" "sync" "relation"
-            aluno_pages -> solicitacao_controller "POST/GET /solicitacoes (criar/consultar solicitações)" "sync" "relation"
-            aluno_pages -> documento_controller "POST /documentos (upload de documentos)" "sync" "relation"
-            assistente_page -> solicitacao_controller "GET /solicitacoes (visualizar solicitações)" "sync" "relation"
+            login_page -> auth_controller "POST /login (realiza login)" "sync" 
+            aluno_pages -> solicitacao_controller "POST/GET /solicitacoes (criar/consultar solicitações)" "sync" 
+            aluno_pages -> documento_controller "POST /documentos (upload de documentos)" "sync" 
+            assistente_page -> solicitacao_controller "GET /solicitacoes (visualizar solicitações)" "sync" 
 
             /**********************************
              * RELACIONAMENTOS ENTRE COMPONENTES *
              **********************************/
-            auth_controller -> auth_service "Processa autenticação e cadastro" "sync" "relation"
-            auth_service -> auth_repository "Leitura e gravação de credenciais" "sync" "relation"
-            auth_service -> sigaa_service "Valida matrícula via API SIGAA" "sync" "relation"
+            auth_controller -> auth_service "Processa autenticação e cadastro" "sync" 
+            auth_service -> auth_repository "Leitura e gravação de credenciais" "sync" 
+            auth_service -> sigaa_service "Valida matrícula via API SIGAA" "sync" 
             
-            solicitacao_controller -> solicitacao_service "Envia dados de solicitação para processamento" "sync" "relation"
-            solicitacao_service -> solicitacao_repository "Lê e grava solicitações no banco" "sync" "relation"
-            solicitacao_service -> notification_service "Dispara e-mails de notificação" "sync" "relation"
+            solicitacao_controller -> solicitacao_service "Envia dados de solicitação para processamento" "sync" 
+            solicitacao_service -> solicitacao_repository "Lê e grava solicitações no banco" "sync" 
+            solicitacao_service -> notification_service "Dispara e-mails de notificação" "sync" 
             
-            documento_controller -> documento_service "Gerencia upload e consulta de documentos" "sync" "relation"
-            documento_service -> documento_repository "Armazena/recupera documentos" "sync" "relation"
+            documento_controller -> documento_service "Gerencia upload e consulta de documentos" "sync" 
+            documento_service -> documento_repository "Armazena/recupera documentos" "sync" 
             
-            notification_service -> sistema_smtp "Envia notificações via Gmail" "async" 
+            notification_service -> sistema_smtp "Envia notificações via Gmail" "async" "RelationshipAsync" 
             sigaa_service -> sistema_api_matricula "Solicita validação de matricula" "sync" 
-            jwt_middleware -> auth_service "Valida token JWT nas rotas protegidas" "sync" "relation"
+            jwt_middleware -> auth_service "Valida token JWT nas rotas protegidas" "sync" 
             
-            auth_repository -> banco_dados "Armazena dados de autenticação" "sync" "relation"
-            solicitacao_repository -> banco_dados "Armazena dados de solicitações" "sync" "relation"
-            documento_repository -> banco_dados "Armazena documentos" "sync" "relation"
+            auth_repository -> banco_dados "Armazena dados de autenticação" "sync" 
+            solicitacao_repository -> banco_dados "Armazena dados de solicitações" "sync" 
+            documento_repository -> banco_dados "Armazena documentos" "sync" 
 
         }
+    
     }
 
     /************************
@@ -206,6 +207,7 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             autolayout lr
         }
 
+            
         styles {
             element "Element" {
                 color #0773af
@@ -236,13 +238,13 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             #################################################################
             element "Controler" {
                 # background "#DAE8FC"
-                color "#6c8ebf"
-                stroke "#6c8ebf"
+                color "#4b6385"
+                stroke "#4b6385"
             }
             element "Service"{
                 # background "#D5E8D4"
-                color "#82B366"
-                stroke "#82B366"
+                color "#6d9656"
+                stroke "#6d9656"
                 
             }
             element "Repository" {
@@ -261,28 +263,27 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
     
             element "Database" {
                 shape cylinder
-                color "#006633"
-                stroke "#006633"
+                color "#034926"
+                stroke "#034926"
+                strokeWidth 10
             }
             
             element "WebApp"{
                 shape WebBrowser
             }
     
-            relationship "relation" {
+            relationship "RelationshipAsync" {
+                dashed true
+            }
+            relationship "Relationship" {
                 color "#555555"
                 thickness 2
                 dashed false
                 fontSize 20
             }
-            relationship "async" {
-                color "#555555"
-                thickness 2
-                dashed true
-                fontSize 20
-            }
         }
     }
+
     configuration {
         scope softwaresystem
     }
