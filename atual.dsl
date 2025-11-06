@@ -58,22 +58,25 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
                  * NÍVEL 3 - COMPONENTES *
                  ************************/
                 auth_controller = component "AuthController" {
-                    tags "Controler", "FormaPadrao"
+                    tags "Controler"
                     technology "Node.js, JWT, Bcrypt"
                     description "Gerencia o login e cadastro de aluno e assistente."
                 }
 
                 auth_service = component "AuthService" {
+                    tags "Service"
                     technology "Node.js, JWT, Bcrypt"
                     description "Implementa regras de autenticação, valida credenciais e gera tokens JWT."
                 }
 
                 auth_repository = component "AuthRepository" {
+                    tags "Repository"
                     technology "PostgreSQL, Prisma ORM"
                     description "CRUD de credenciais de autenticação no banco de dados."
                 }
 
                 sigaa_service = component "SigaaService" {
+                    tags "Service"
                     technology "Node.js, Express"
                     description "Integra com a API do SIGAA para validar matrícula de alunos."
                 }
@@ -85,11 +88,13 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
                 }
 
                 solicitacao_service = component "SolicitacaoService" {
+                    tags "Service"
                     technology "Node.js, Express"
                     description "Gerencia a lógica de criação, atualização e validação das solicitações de auxílio."
                 }
 
                 solicitacao_repository = component "SolicitacaoRepository" {
+                    tags "Repository"
                     technology "PostgreSQL, Prisma ORM"
                     description "Responsável por armazenar e recuperar solicitações de auxílio."
                 }
@@ -101,21 +106,25 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
                 }
 
                 documento_service = component "DocumentoService" {
+                    tags "Service"
                     technology "Node.js, Express"
                     description "Gerencia o armazenamento e utilização de documentos enviados pelos alunos."
                 }
 
                 documento_repository = component "DocumentoRepository" {
+                    tags "Repository"
                     technology "PostgreSQL, Prisma ORM"
                     description "Armazena e recupera informações de documentos e dados de alunos."
                 }
 
                 notification_service = component "NotificationService" {
+                    tags "Service"
                     technology "Node.js, Express"
                     description "Gerencia o envio de notificações por e-mail utilizando o SMTP/API Gmail."
                 }
 
                 jwt_middleware = component "JWTMiddleware" {
+                    tags "JWT"
                     technology "Node.js, JWT"
                     description "Middleware que intercepta e valida tokens JWT em rotas protegidas."
                 }
@@ -196,6 +205,13 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
         }
 
         styles {
+            element "Element" {
+                color #0773af
+                stroke #0773af
+                strokeWidth 7
+                shape roundedbox
+            }
+        
             element "Person" {
                 shape person
             }
@@ -209,32 +225,41 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
             element "Component" {
                 shape component
             }
-            
-            element "FormaPadrao"{
-                strokeWidth 10
+            element "JWT" {
+                color "#9673a6"
+                stroke "#9673a6"
             }
-            
+
+            #################################################################
             element "Controler" {
-                background "#DAE8FC"
+                # background "#DAE8FC"
+                color "#6c8ebf"
                 stroke "#6c8ebf"
             }
             element "Service"{
-                background "#D5E8D4"
+                # background "#D5E8D4"
+                color "#82B366"
                 stroke "#82B366"
+                
             }
             element "Repository" {
-                background "#FFE6CC"
+                # background "#FFE6CC"
+                color "#D79B00"
                 stroke "#D79B00"
             }
-            
+            ################################################################# 
             element "External System" {
-                background "#999999"
-                color "#ffffff"
+                # background "#999999"
+                # color "#ffffff"
                 shape roundedbox
+                stroke "#999999"
+                color "#999999"
             }
     
             element "Database" {
                 shape cylinder
+                color "#006633"
+                stroke "#006633"
             }
             
             element "WebApp"{
@@ -254,7 +279,8 @@ workspace "SIAE - Sistema Integrado à Assistência Estudantil" {
                 fontSize 20
             }
         }
-    
-        theme default
+    }
+    configuration {
+        scope softwaresystem
     }
 }
